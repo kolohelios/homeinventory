@@ -1,1 +1,1 @@
-angular.module('poseidon', ['firebase', 'ui.router']);
+angular.module('homeinventory', ['firebase', 'ui.router']);

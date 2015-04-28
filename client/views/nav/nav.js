@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('poseidon')
+angular.module('homeinventory')
 .controller('NavCtrl', function($rootScope, $scope, $state, User){
 
   $scope.afAuth.$onAuth(function(data){

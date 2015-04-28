@@ -1,0 +1,78 @@
+h3 Home Inventory
+hr
+.row
+  .col-xs-6
+    h5 Add a Room
+    form(name='addRoomForm')
+      .form-group
+        label(for='room')
+        input.form-control(name='room' ng-model='room')
+      .form-group
+        button.btn.btn-success(ng-click='addRoom(room)') Add Room
+hr
+form(name='itemForm')
+h5 Item Management
+.row
+  .col-xs-12.col-sm-2
+    .form-group
+      label(for='room') Room
+      select.form-control(name='room' ng-model='item.room')
+        option(ng-repeat='(key, value) in rooms') {{value.name}}
+  .col-xs-12.col-sm-2
+    .form-group
+      label(for='qty') Quantity
+      input.form-control(type='number' name='qty' ng-model='item.qty')
+  .col-xs-12.col-sm-3
+    .form-group
+      label(for='name') Item Name
+      input.form-control(type='text' name='name' ng-model='item.name')
+  .col-xs-12.col-sm-2
+    .form-group
+      label(for='cost') Cost Each
+      input.form-control(type='number' name='cost' ng-model='item.cost')
+  .col-xs-12.col-sm-3
+    .form-group
+      label(for='purchasedate') Purchase Date
+      input.form-control(type='date' name='purchasedate' ng-model='item.purchaseDate')
+
+.row
+  .col-xs-6.col-xs-offset-3
+    .form-group
+      label(for='button')
+      button.form-control.btn.btn-primary(name='button' ng-click='addItem(item)') Add Item
+hr
+.row
+  .col-xs-4.col-xs-offset-4
+    .form-group
+      label(for='roomfordisp') Room to Display
+      select.form-control(name='roomfordisp' ng-model='selectedRoom')
+        option(ng-repeat='(key, value) in rooms') {{value.name}}
+      button.form-control.btn.btn-info(ng-click='displayTable(selectedRoom)') Display Table
+.row(ng-show='tableData')
+  .col-xs-12
+    div
+      table.table.table-striped
+        thead
+          tr
+            th Delete
+            th Edit
+            th Item
+            th Qty
+            th Cost Each
+            th Purchase Date
+        tbody
+          tr(ng-repeat='(key, value) in tableData')
+            td: button.btn.btn-danger.btn-sm(ng-click='itemDelete(key, value.room)') Delete
+            td: button.btn.btn-info.btn-sm(ng-click='itemEdit(key)') Edit
+            td {{value.name}}
+            td {{value.qty}}
+            td {{value.cost | currency}}
+            td {{value.purchaseDate | date: 'dd MMM yyyy'}}
+        tfoot
+          tr
+            td
+            td
+            td
+            td
+            td {{totalValue | currency}}
+            td
